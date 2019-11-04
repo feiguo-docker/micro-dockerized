@@ -10,5 +10,6 @@ node {
 
   stage('Build') {
     echo "do build"
+    sh "make "
   }
 }
