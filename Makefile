@@ -41,7 +41,7 @@ docker-build:
 ifeq ($(OS),Windows_NT)
 	dos2unix database/01-init.sh
 endif
-	./docker-compose.sh build --parallel
+	./docker-compose.sh build
 
 docker-up:
 	./docker-compose.sh up -d
