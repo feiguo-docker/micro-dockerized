@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  database:
+    ports:
+      - $DATABASE_PORT:$DATABASE_PORT
+  application:
+    ports:
+      - $APPLICATION_PORT:$APPLICATION_PORT
+      - $DEBUG_PORT:$DEBUG_PORT

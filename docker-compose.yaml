@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+  database:
+    build: ./database
+    image: database:$TAG
+    networks:
+      network:
+        ipv4_address: "$NETWORK.2"
+    expose:
+      - $DATABASE_PORT
+  application:
+    depends_on:
+      - database
+    build:
+        context: ./application/addressbook/target
+        dockerfile: ../../Dockerfile
+    image: application:$TAG
+    networks:
+      network:
+        ipv4_address: "$NETWORK.3"
+    environment:
+      - DB_HOST=database
+      - DB_PORT=$DATABASE_PORT
+      - DB_NAME=addressbook
+      - DB_USER=connect
+      - DB_PASS=password
+networks:
+  network:
+    ipam:
+      driver: default
+      config:
+        - subnet: "$NETWORK.0/24"

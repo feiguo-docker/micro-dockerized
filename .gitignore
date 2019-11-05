@@ -1,0 +1,29 @@
+# MAC
+.DS_Store
+
+# Eclipse
+.classpath
+.project
+.factorypath
+.apt_generated/
+.apt_generated_tests/
+.settings/
+sonarlint.json
+
+# Visual source code
+.vscode/
+
+# netbeans
+nb-configuration.xml
+nbactions.xml
+nbactions-*.xml
+nbproject/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Maven
+target/
+*.versionsBackup

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" <<-EOSQL
+CREATE DATABASE addressbook;
+CREATE USER connect WITH CREATEDB PASSWORD 'password';
+
+GRANT ALL PRIVILEGES ON DATABASE addressbook TO connect;
+-- ALTER USER demo WITH SUPERUSER;
+EOSQL

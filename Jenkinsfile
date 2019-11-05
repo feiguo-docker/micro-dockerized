@@ -8,10 +8,48 @@ node {
     checkout scm
   }
 
-  stage('make') {
-    sh "make --help"
+  stage('Build') {
+    sh "mvn -f application/addressbook/pom.xml versions:set -DnewVersion=${appVersion} -DgenerateBackupPoms=false"
+    sh "make app-build"
   }
-  stage('docker') {
-    sh "docker ps"
+
+  stage('build docker') {
+    sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-build"
+  }
+
+  stage('setup db') {
+    echo "done with flyway within the application"
+  }
+
+  stage('start application') {
+    sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-up docker-poll-app"
+  }
+
+  stage('integration-test') {
+    sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} app-create-person app-read-person"
+  }
+
+  stage('stop application') {
+    sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-down"
+  }
+  post {
+    success {
+      script {
+        log.outputBanner("Sending notification")
+          currentBuild.result = "SUCCESS"
+      }
+    }
+    failure {
+      script {
+        log.outputBanner("Sending notification to culprits")
+        currentBuild.result = "FAILURE"
+      }
+    }
+    unstable { 
+      script {
+        log.outputBanner("Sending notification")
+        currentBuild.result = "UNSTABLE"
+      }
+    }
   }
 }
