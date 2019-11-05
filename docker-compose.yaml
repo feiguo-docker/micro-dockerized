@@ -12,9 +12,7 @@ services:
   application:
     depends_on:
       - database
-    build:
-        context: ./application/addressbook/target
-        dockerfile: ../../Dockerfile
+    build: ./application
     image: application:$TAG
     networks:
       network:
