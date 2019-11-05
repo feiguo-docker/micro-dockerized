@@ -8,8 +8,10 @@ node {
     checkout scm
   }
 
-  stage('Build') {
-    echo "do build"
-    sh "make"
+  stage('make') {
+    sh "make --help"
+  }
+  stage('docker') {
+    sh "docker ps"
   }
 }
