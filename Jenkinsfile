@@ -22,6 +22,7 @@ node {
   }
 
   stage('start application') {
+    sh "docker ps -q --filter 'label=executor=${env.EXECUTOR_NUMBER}' | xargs -r docker stop"
     sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-up docker-poll-app"
   }
 
@@ -31,5 +32,8 @@ node {
 
   stage('stop application') {
     sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-down"
+  }
+  stage('cleanup') {
+    sh "docker ps -q --filter 'label=executor=${env.EXECUTOR_NUMBER}' | xargs -r docker stop | xargs -r docker rm --volumes"
   }
 }

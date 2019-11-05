@@ -9,6 +9,8 @@ services:
         ipv4_address: "$NETWORK.2"
     expose:
       - $DATABASE_PORT
+    labels:
+      - "executor=$EXECUTOR"
   application:
     depends_on:
       - database
@@ -23,6 +25,8 @@ services:
       - DB_NAME=addressbook
       - DB_USER=connect
       - DB_PASS=password
+    labels:
+      - "executor=$EXECUTOR"
 networks:
   network:
     ipam:

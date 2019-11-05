@@ -47,7 +47,7 @@ docker-up:
 	./docker-compose.sh up -d
 
 docker-down:
-	./docker-compose.sh down
+	./docker-compose.sh down --rmi all --volumes
 
 docker-up-local:
 	./docker-compose.sh -f docker-compose.yaml -f docker-compose-local.yaml up -d
