@@ -32,24 +32,4 @@ node {
   stage('stop application') {
     sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-down"
   }
-  post {
-    success {
-      script {
-        log.outputBanner("Sending notification")
-          currentBuild.result = "SUCCESS"
-      }
-    }
-    failure {
-      script {
-        log.outputBanner("Sending notification to culprits")
-        currentBuild.result = "FAILURE"
-      }
-    }
-    unstable { 
-      script {
-        log.outputBanner("Sending notification")
-        currentBuild.result = "UNSTABLE"
-      }
-    }
-  }
 }
