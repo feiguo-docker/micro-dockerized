@@ -5,10 +5,8 @@ services:
     ports:
       - $DATABASE_PORT:$DATABASE_PORT
   application:
-    command: ["catalina.sh", "jpda", "run"]
+    entrypoint: ["java", "-agentlib:jdwp=transport=dt_socket,address=$DEBUG_PORT,suspend=n,server=y", "-jar", "/opt/payara/payara-micro.jar"]
+    command: ["--deploymentDir", "/opt/payara/deployments"]
     ports:
       - $APPLICATION_PORT:$APPLICATION_PORT
       - $DEBUG_PORT:$DEBUG_PORT
-    environment:
-      - JPDA_ADDRESS=*:$DEBUG_PORT
-      - JPDA_TRANSPORT=dt_socket

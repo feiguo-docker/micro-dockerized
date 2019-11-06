@@ -1,2 +1,2 @@
-FROM tomee
-COPY addressbook/target/addressbook.war /usr/local/tomee/webapps/
+FROM payara/micro
+COPY ./addressbook/target/addressbook.war $DEPLOY_DIR
