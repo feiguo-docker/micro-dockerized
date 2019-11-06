@@ -1,0 +1,10 @@
+#!/bin/bash
+export EXECUTOR=5
+export NETWORK=192.99.$EXECUTOR
+export DATABASE_HOST=$NETWORK.2
+export APPLICATION_PORT=8080
+export DEBUG_PORT=8000
+export DATABASE_PORT=5432
+export APPLICATION_HOST=$NETWORK.3
+export PROJECT_NAME=addressbook-$EXECUTOR
+export TAG=latest
