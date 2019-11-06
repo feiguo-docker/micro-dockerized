@@ -27,7 +27,7 @@ node {
   }
 
   stage('integration-test') {
-    sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} app-create-person app-read-person"
+    sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} app-run-st"
   }
 
   stage('stop application') {
