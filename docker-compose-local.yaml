@@ -5,6 +5,10 @@ services:
     ports:
       - $DATABASE_PORT:$DATABASE_PORT
   application:
+    command: ["catalina.sh", "jpda", "run"]
     ports:
       - $APPLICATION_PORT:$APPLICATION_PORT
       - $DEBUG_PORT:$DEBUG_PORT
+    environment:
+      - JPDA_ADDRESS=*:$DEBUG_PORT
+      - JPDA_TRANSPORT=dt_socket
