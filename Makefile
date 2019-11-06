@@ -28,10 +28,13 @@ app-build:
 	mvn clean install -f application/addressbook/
 
 app-create-person:
-	curl -X POST -H 'Content-Type: application/json' -i http://$(APPLICATION_HOST):8080/addressbook/api/contacts --data '{"firstName":"Krzysztof", "lastName": "Wolf"}'
+	curl -X POST -H 'Content-Type: application/json' -i http://$(APPLICATION_HOST):$(APPLICATION_PORT)/addressbook/api/contacts --data '{"firstName":"Max", "lastName": "Mustermann"}'
 
 app-read-person:
-	curl -X GET -H 'Content-Type: application/json' -i http://$(APPLICATION_HOST):8080/addressbook/api/contacts/1
+	curl -X GET -H 'Content-Type: application/json' -i http://$(APPLICATION_HOST):$(APPLICATION_PORT)/addressbook/api/contacts/1
+
+app-run-st:
+	mvn failsafe:integration-test -f application/addressbook/
 
 #################################################
 # DOCKER

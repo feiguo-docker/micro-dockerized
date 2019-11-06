@@ -28,7 +28,7 @@ public class ContactResource {
     final Contact created = contactCrudController.create(contact);
     UriBuilder builder = uriInfo.getAbsolutePathBuilder();
     builder.path(Long.toString(created.getId()));
-    return Response.created(builder.build()).build();
+    return Response.created(builder.build()).entity(created).build();
   }
 
   @GET

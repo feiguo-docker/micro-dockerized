@@ -1,0 +1,15 @@
+
+host=localhost
+@hostname = localhost
+@port = 8080
+
+###
+
+POST  http://{{hostname}}:{{port}}/addressbook/api/contacts
+Content-Type: application/json
+
+{"firstName":"Max", "lastName": "Mustermann"}
+
+### 
+
+GET http://{{hostname}}:{{port}}/addressbook/api/contacts/1
