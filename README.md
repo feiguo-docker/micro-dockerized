@@ -1,4 +1,4 @@
-# Dockerized Pipeline - Demo Application
+# Dockerized Pipeline - Demo Application for MW
 
 Simple demo app for a microservice and a database.
 
