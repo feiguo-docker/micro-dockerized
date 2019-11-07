@@ -31,7 +31,7 @@ public class ContactResourceIT {
 
     final Response createResponse = createContact();
 
-    final String location = createResponse.getHeader("location");
+    final String location = createResponse.getHeader("locationXXX");
     final Response readResponse = readContact(location);
 
     readResponse.then().statusCode(OK.getStatusCode());
@@ -44,7 +44,7 @@ public class ContactResourceIT {
     final ResponseBody body = createResponse.getBody();
     final String print = body.print();
 
-    final String location = createResponse.getHeader("location");
+    final String location = createResponse.getHeader("locationXXX");
 
     given().delete(location).then().statusCode(OK.getStatusCode());
   }
