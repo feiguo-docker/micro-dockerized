@@ -21,6 +21,10 @@ node {
     echo "done with flyway within the application"
   }
 
+  stage('greeting the colleagues') {
+    echo "Hi colleagues!"
+  }
+
   stage('start application') {
     sh "docker ps -q --filter 'label=executor=${env.EXECUTOR_NUMBER}' | xargs -r docker stop"
     sh "make EXECUTOR=${env.EXECUTOR_NUMBER} TAG=${appVersion} docker-up docker-poll-app"
