@@ -10,3 +10,5 @@ The microservice contains two rest services (see [api.rest](api.rest))
 This demo app should demonstrate the dockerized pipeline with jenkins.
 
 cicdday
+
+TEsted trigger for gcdm pull request.
