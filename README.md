@@ -8,3 +8,4 @@ The microservice contains two rest services (see [api.rest](api.rest))
 - get one specific contact
 
 This demo app should demonstrate the dockerized pipeline with jenkins.
+TEsted trigger for gcdm pull request.
